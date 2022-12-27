@@ -1,4 +1,5 @@
 # 2-Layer KiCAD Template
+![3d photo of the atmega32u4 breakout board](img/3d.png)
 ## Intro
 Template for 2-Layer KiCAD projects. Stackup follows the PCBWay standard stackup and the design rules are setup to be the smallest and most accomodating without going into the "Advanced" process thus greatly increasing the price of board fabrication. There are really two major rules that drive board complexity:
 - Min Track/Spacing: 5mil
