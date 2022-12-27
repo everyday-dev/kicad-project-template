@@ -24,3 +24,19 @@ fp-info-cache
 # Exported BOM files
 *.xml
 *.csv
+*.xls*
+
+# Output artifacts
+gerbers/
+.STEP
+.STP
+.step
+!models/*.STEP
+!models/*.STP
+!models/*.step
+*.pdf
+*.zip
+
+# User Machine Specific
+*-backups/
+*.kicad_prl
