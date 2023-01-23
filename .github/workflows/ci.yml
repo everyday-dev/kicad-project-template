@@ -26,6 +26,7 @@ jobs:
       run: |
         echo "GIT_BRANCH=$(echo $GITHUB_REF_NAME | cut -d'/' -f 3)" >> $GITHUB_ENV
 
+    # To be updated once kicad-cli makes it to stable release in v7
     - name: Install KiCAD
       run: |
         sudo add-apt-repository --yes ppa:kicad/kicad-dev-nightly
