@@ -1,15 +1,15 @@
 """
     @package
     Output: CSV (comma-separated)
-    Grouped By: MFP then Value
+    Grouped By: MPN then Value
     Sorted By: Ref
-    Fields: Reference(s), MFP, Qty, Value, LibPart, Footprint, Datasheet
+    Fields: Reference(s), MPN, Qty, Value, LibPart, Footprint, Datasheet
 
-    Outputs a grouped list of components. Grouping by MFP takes priority
-    and components without an MFP field are grouped by Value & Footprint
+    Outputs a grouped list of components. Grouping by MPN takes priority
+    and components without an MPN field are grouped by Value & Footprint
 
     Command line:
-    python "pathToFile/bom_csv_grouped_by_mfp.py" "%I" "%O.csv"
+    python "pathToFile/bom_csv_grouped_by_MPN.py" "%I" "%O.csv"
 """
 
 from __future__ import print_function
@@ -35,9 +35,9 @@ def myEqu(self, other):
     """
     result = True
 
-    # Check if the MFP field even exists
-    if( (self.getField("MFP") != '') & (other.getField("MFP") != '')):
-        if( self.getField("MFP") != other.getField("MFP") ):
+    # Check if the MPN field even exists
+    if( (self.getField("MPN") != '') & (other.getField("MPN") != '')):
+        if( self.getField("MPN") != other.getField("MPN") ):
             return False
 
     if self.getValue() != other.getValue():
@@ -85,7 +85,7 @@ partfields -= set( ['Reference', 'Value', 'Datasheet', 'Footprint'] )
 columnset = compfields | partfields     # union
 
 # prepend an initial 'hard coded' list and put the enchillada into list 'columns'
-columns = ['Reference(s)','MFP','Qty','Value','LibPart', 'Footprint', 'Datasheet']
+columns = ['Reference(s)','MPN','Qty','Value','Manufacturer','LibPart', 'Footprint', 'Datasheet']
 
 # Create a new csv writer object to use as the output formatter
 out = csv.writer( f, lineterminator='\n', delimiter=',', quotechar='\"', quoting=csv.QUOTE_ALL )
@@ -122,9 +122,10 @@ for group in grouped:
     # Fill in the component groups common data
     # columns = ['Qty', 'Reference(s)', 'Value', 'LibPart', 'Footprint', 'Datasheet'] + sorted(list(columnset))
     row.append( refs );
-    row.append( net.getGroupField(group, "MFP") )
+    row.append( net.getGroupField(group, "MPN") )
     row.append( len(group) )
     row.append( c.getValue() )
+    row.append( net.getGroupField(group, "Manufacturer") )
     row.append( c.getLibName() + ":" + c.getPartName() )
     row.append( net.getGroupFootprint(group) )
     row.append( net.getGroupDatasheet(group) )
