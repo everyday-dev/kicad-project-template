@@ -53,7 +53,7 @@ jobs:
 
     - name: Generate BOM
       run: |
-        python ./util/bom_csv_grouped_by_mfp.py ./${{env.PROJECT_NAME}}.xml ./output/${{env.PROJECT_NAME}}_${{env.REVISION}}_BOM.csv
+        python ./util/bom_csv_grouped_by_mpn.py ./${{env.PROJECT_NAME}}.xml ./output/${{env.PROJECT_NAME}}_${{env.REVISION}}_BOM.csv
 
     - name: Generate STEP
       run: |
