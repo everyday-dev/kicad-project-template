@@ -10,7 +10,7 @@ on:
 
 env:
   PROJECT_NAME: "kicad-2-layer-template"
-  CLI_TOOL: "kicad-cli-nightly"
+  CLI_TOOL: "kicad-cli"
 
 jobs:
   Generate_KiCAD_outputs:
@@ -29,9 +29,9 @@ jobs:
     # To be updated once kicad-cli makes it to stable release in v7
     - name: Install KiCAD
       run: |
-        sudo add-apt-repository --yes ppa:kicad/kicad-dev-nightly
+        sudo add-apt-repository --yes ppa:kicad/kicad-7.0-releases
         sudo apt update
-        sudo apt install kicad-nightly
+        sudo apt install kicad
 
     - name: Generate Netlist
       run: |
